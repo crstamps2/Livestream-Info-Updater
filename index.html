@@ -8,6 +8,7 @@
   
   <input type="password" id="api-key-input" placeholder="Enter API Key" oninput="toggleSaveButton()" />
   <button id="save-button" onclick="saveApiKey()" disabled>Save</button>
+  <button id="reset-button" onclick="resetApiKey()">Reset</button>
 
   <script>
     function toggleSaveButton() {
@@ -21,6 +22,17 @@
       localStorage.setItem("api-key", apiKey);
       var saveButton = document.getElementById("save-button");
       saveButton.disabled = true; // Disable the save button
+      var apiKeyInput = document.getElementById("api-key-input");
+      apiKeyInput.disabled = true; // Disable the input field
+    }
+
+    function resetApiKey() {
+      localStorage.removeItem("api-key");
+      var apiKeyInput = document.getElementById("api-key-input");
+      apiKeyInput.value = "";
+      apiKeyInput.disabled = false;
+      var saveButton = document.getElementById("save-button");
+      saveButton.disabled = false;
     }
   </script>
 
